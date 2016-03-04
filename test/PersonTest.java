@@ -4,18 +4,45 @@ import org.junit.Assert;
 public class PersonTest {
 
     @Test
-    public void test_for_get_name_with_first_and_last_name() throws Exception {
-        Name name = new Name("Syanima","Sivadasan");
-        Address address = new Address("Thrissur","Kerala","India");
-        Person syani = new Person(name,address,21);
-        Assert.assertEquals(syani.getNameWithFirstAndLast(" "),"Syanima Sivadasan");
+    public void testGetAddressGivesRepresentationOfAddress() throws Exception {
+        Name name = new Name("Rasool", "Pookuty");
+        Address address = new Address("Thrissur", "Kerala", "India");
+        Person rasool = new Person(name, address, 32);
+        String expected = "Rasool Pookuty\nThrissur, Kerala, India";
+        Assert.assertEquals(expected, rasool.getAddress());
+
     }
 
     @Test
-    public void test_for_get_name_with_last_and_first_name() throws Exception {
-        Name name = new Name("Syanima","Sivadasan");
-        Address address = new Address("Thrissur","Kerala","India");
-        Person syani = new Person(name,address,21);
-        Assert.assertEquals(syani.getNameWithLastAndFirst(" "),"Sivadasan Syanima");
+    public void testGetAddressWithOptionsGiven() throws Exception {
+        Name name = new Name("Rasool", "Pookuty");
+        Address address = new Address("Thrissur", "Kerala", "India");
+        Person rasool = new Person(name, address, 32);
+        String expected = "Rasool, Pookuty\nThrissur, Kerala, India";
+        Assert.assertEquals(expected, rasool.getAddress(true, ", "));
+
+        expected ="Pookuty, Rasool\nThrissur, Kerala, India";
+        Assert.assertEquals(expected, rasool.getAddress(false, ", "));
+    }
+
+    @Test
+    public void testGetAddressWithCountry() throws Exception {
+        Name name = new Name("Rasool", "Pookuty");
+        Address address = new Address("Thrissur", "Kerala", "India");
+        Person rasool = new Person(name, address, 32);
+        String expected = "Rasool Pookuty, India";
+        Assert.assertEquals(expected, rasool.getAddressWithCountry());
+    }
+
+    @Test
+    public void testGetAddressWithCountryWithGivenOptions() throws Exception {
+        Name name = new Name("Rasool", "Pookuty");
+        Address address = new Address("Thrissur", "Kerala", "India");
+        Person rasool = new Person(name, address, 32);
+        String expected = "Rasool, Pookuty, India";
+        Assert.assertEquals(expected, rasool.getAddressWithCountry(true, ", "));
+
+        expected = "Pookuty, Rasool, India";
+        Assert.assertEquals(expected, rasool.getAddressWithCountry(false, ", "));
     }
 }

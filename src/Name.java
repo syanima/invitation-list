@@ -1,6 +1,3 @@
-/**
- * Created by syanima on 01/03/16.
- */
 public class Name {
     protected String firstName;
     protected String lastName;

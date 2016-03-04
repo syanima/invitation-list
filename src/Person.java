@@ -9,11 +9,26 @@ public class Person {
         this.address = address;
     }
 
-    public String getNameWithFirstAndLast(String seperator){
-        return name.firstLast(seperator);
+    private String getNameByChoice(boolean choice, String separator) {
+        return (choice) ? name.firstLast(separator) : name.lastFirst(separator);
     }
 
-    public String getNameWithLastAndFirst(String seperator){
-        return name.lastFirst(seperator);
+    public String getAddress() {
+        return getAddress(true, " ");
     }
+
+    public String getAddress(boolean firstNameFirst, String separator) {
+        String name = getNameByChoice(firstNameFirst, separator);
+        return name + "\n" + address.toString();
+    }
+
+    public String getAddressWithCountry() {
+        return getAddressWithCountry(true, " ");
+    }
+
+    public String getAddressWithCountry(boolean firstNameFirst, String separator) {
+        String name = getNameByChoice(firstNameFirst, separator);
+        return name + ", " + address.getCountry();
+    }
+
 }
